@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=google_chrome">
@@ -9,14 +10,44 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 </head>
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // empêche l'envoi classique
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    fetch("contact.php", {
+        method: "POST",
+        body: data
+    })
+    .then(response => response.text())
+    .then(message => {
+        document.getElementById("confirmation").innerHTML = `
+            <div style="padding: 1em; background-color: #e6ffe6; border: 1px solid #4CAF50;">
+                ${message}
+            </div>
+        `;
+        form.reset(); // vide le formulaire après succès
+    })
+    .catch(error => {
+        document.getElementById("confirmation").innerHTML = `
+            <div style="padding: 1em; background-color: #ffe6e6; border: 1px solid #f44336;">
+                Erreur lors de l'envoi : ${error}
+            </div>
+        `;
+    });
+});
+</script>
+
 <body>
     <header>
         <nav>
             <ul>
-                <li id="logo"><a href="#">Clos 
-                    Marsault</a></li>
+                <li id="logo"><a href="#">Clos
+                        Marsault</a></li>
                 <li><a href="#langue">langue</a></li>
-                <li><a href="#reserver">Reserver</a></li> 
+                <li><a href="#reserver">Reserver</a></li>
                 <li><a href="#contact">Nous contacter</a></li>
             </ul>
         </nav>
@@ -28,44 +59,57 @@
     </header>
     <section id="presentation">
         <div id="texteIntro">
-        <h2>Un lieu unique, pour un sejour unique</h2>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur perferendis esse nostrum est provident iure culpa sequi sunt laborum voluptas, quo obcaecati ipsam enim sed ratione maxime corporis. Harum nobis commodi ratione facilis consequuntur ipsa voluptas id laudantium, dolorum iure nesciunt cupiditate necessitatibus obcaecati inventore vitae laborum, doloribus suscipit voluptatibus fugit iste aliquam totam, incidunt quam. Architecto eum beatae possimus accusantium debitis nulla hic dolorum, voluptatibus, earum cumque explicabo, excepturi dolore. Unde repellat facilis sequi vero velit nulla alias error.?</p>
+            <h2>Un lieu unique, pour un sejour unique</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur perferendis esse nostrum est
+                provident iure culpa sequi sunt laborum voluptas, quo obcaecati ipsam enim sed ratione maxime corporis.
+                Harum nobis commodi ratione facilis consequuntur ipsa voluptas id laudantium, dolorum iure nesciunt
+                cupiditate necessitatibus obcaecati inventore vitae laborum, doloribus suscipit voluptatibus fugit iste
+                aliquam totam, incidunt quam. Architecto eum beatae possimus accusantium debitis nulla hic dolorum,
+                voluptatibus, earum cumque explicabo, excepturi dolore. Unde repellat facilis sequi vero velit nulla
+                alias error.?</p>
         </div>
-            <div id="prestations">
-                <div class="imagePresentation">
-                    <h4>Nous trouver</h4>
-                    <a href="#"><img src="media/carte.JPG" alt="carte"></a>
-                </div>
-                <div class="imagePresentation">
-                    <h4>Côté chambre</h4>
-                    <a href="#"><img src="media/chambre.JPG" alt="chambre"></a>
-                </div>
-                <div class="imagePresentation">
-                    <h4>Côté cuisine</h4>
-                    <a href="#"><img src="media/repas.JPG" alt="repas"></a>
-                </div>  
+        <div id="prestations">
+            <div class="imagePresentation">
+                <h4>Nous trouver</h4>
+                <a href="#"><img src="media/carte.JPG" alt="carte"></a>
             </div>
-        </section>
-        <section id="tourisme">
-            <h2>Et tant à découvrir...</h2>
-            <ul>
-                <li id="ocean"><p>l'océan Atlantique</p></li>
-                <li id="chateau"><p>les chateaux du médoc</p></li>
-                <li id="phare"><p>l'estuaire de la gironde</p></li>
-                <li id="vignoble"><p>le vignoble de Bordelais</p></li>
-            </ul>
+            <div class="imagePresentation">
+                <h4>Côté chambre</h4>
+                <a href="#"><img src="media/chambre.JPG" alt="chambre"></a>
+            </div>
+            <div class="imagePresentation">
+                <h4>Côté cuisine</h4>
+                <a href="#"><img src="media/repas.JPG" alt="repas"></a>
+            </div>
+        </div>
+    </section>
+    <section id="tourisme">
+        <h2>Et tant à découvrir...</h2>
+        <ul>
+            <li id="ocean">
+                <p>l'océan Atlantique</p>
+            </li>
+            <li id="chateau">
+                <p>les chateaux du médoc</p>
+            </li>
+            <li id="phare">
+                <p>l'estuaire de la gironde</p>
+            </li>
+            <li id="vignoble">
+                <p>le vignoble de Bordelais</p>
+            </li>
+        </ul>
 
-        </section>
-        <footer>
-            <h2 id="contact">Contactez-nous</h2>
-            <form>
-<!--input donne un rectangle qui peut recevoir du texte et placeholder pour mettre l'instruction avnt la saisie de l'utilisateur.-->
-                <input placeholder="nom"> 
-                <input placeholder="E-mail">
-                <textarea placeholder="votre message ici..."></textarea>
-                <button>Envoyer</button>
-            </form>
-            <div id="deuxiemeTrait"></div>
+    </section>
+    <footer>
+        <h2 id="contact">Contactez-nous</h2>
+        <form action="contact.php" method="POST">
+            <input name="nom" placeholder="nom">
+            <input name="email" placeholder="E-mail">
+            <textarea name="message" placeholder="votre message ici..."></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+        <div id="deuxiemeTrait"></div>
         <div id="copyrightEtIcons">
             <!--alt+0169 icon copyright-->
             <span>© fromScratch(); 2020</span>
@@ -76,7 +120,7 @@
                 <a href="http://www.instagram.com"><i class="fa fa-instagram"></i></a>
             </div>
         </div>
-        </footer>      
-   </body>
-    </html>
-    
+    </footer>
+</body>
+
+</html>
