@@ -1,222 +1,655 @@
-@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100&family=Dancing+Script&display=swap');
+/* Import des polices Google */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
-html{
- scroll-behavior: smooth;
-}
-
-body{
-    font-family: 'Advent Pro', sans-serif;
+/* Reset et base */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-ul{
-    margin: 0;
-    padding: 0;
+
+html {
+    scroll-behavior: smooth;
 }
-li {
-    list-style-type: none;
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background-color: #fff;
 }
+
+/* Utilitaires */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
 h2 {
-text-transform: uppercase;
-text-align: center;
-padding-top: 30px;
-font-size: 2em;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 3rem 0 2rem 0;
+    color: #2c3e50;
 }
+
+h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #5a6c7d;
+}
+
 a {
     text-decoration: none;
-    color: black;
+    color: inherit;
+    transition: color 0.3s ease;
 }
-/* ********************NAVBAR**************** */
+
+ul {
+    list-style: none;
+}
+
+/* ======================== HEADER ======================== */
+header {
+    position: relative;
+    z-index: 1000;
+}
+
 nav {
-    overflow: hidden;
-    background-color: #FFFAE1;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     position: fixed;
+    top: 0;
     width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+}
+
+#logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #8B4513;
+}
+
+nav ul li:not(#logo) {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    font-weight: 500;
+    color: #2c3e50;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background: #8B4513;
+    color: white;
+}
+
+/* ======================== IMAGE PRINCIPALE ======================== */
+#imagePrincipale {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('media/image-principale.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+#imagePrincipale h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+#premierTrait {
+    width: 100px;
+    height: 3px;
+    background: #8B4513;
+    margin: 1rem 0;
+}
+
+#imagePrincipale h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 1rem;
+}
+
+/* ======================== PRESENTATION ======================== */
+#presentation {
+    padding: 5rem 0;
+    background: #f8f9fa;
+}
+
+#texteIntro {
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+#texteIntro p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #5a6c7d;
+}
+
+#prestations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.imagePresentation {
+    text-align: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.imagePresentation:hover {
+    transform: translateY(-5px);
+}
+
+.imagePresentation h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #8B4513;
+}
+
+.imagePresentation img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+}
+
+.imagePresentation img:hover {
     opacity: 0.9;
 }
-header li{
-    /* flote a droite */
-    float: right ;
-    font-size: 1.2em;
+
+/* ======================== TOURISME ======================== */
+#tourisme {
+    padding: 5rem 0;
+    background: white;
 }
-header li a {
-    text-decoration: none;
-    display: block;
-    text-align: center;
-    padding: 18px 16px;
-}
-#logo {
-    font-family: 'Dancing Script', cursive;
-    font-weight: bold;
-    float: left;
-}
-/* ******************image principale******************* */
-#imagePrincipale {
-    padding-top: 60px;
-    background: url(media/image-principale.jpg) no-repeat 50% 50%;
-    background-size: cover;
-    height:  799px;  
-}
-h1 {
-    font-family: 'Dancing Script', Cursive;
-    text-align: center;
-    color: antiquewhite;
-    font-size: 6em;
-    margin-top: 100px;
-    text-shadow: 1px 3px 2px black;
-}
-#premierTrait{
-    height: 1px;
-    width: 25%;
-    margin: -3px auto;
-    background-color: #FFFAE1;
-    box-shadow: 1px 3px 2px black;
-}
-h3 {
-   text-align: center;
-   color: antiquewhite;
-font-size: 3em;
-text-shadow: 1px 3px 2px black;
-}
-/* *************PRESENTATION***************** */
-#presentation{
-    background-color: #FFFAE1;
-    padding: 10px 0px 100px 0 ;
-}
-#texteIntro {
-    padding: 0px 20%;
-}
-#prestations {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 30px 10%;
-}
-.imagePresentation h4 {
-    font-family: 'Dancing script', cursive;
-    text-align: center;
-    font-size: 1.8em;
-    margin: 15px;
-    font: weight 300px; ;
-}
-.imagePresentation img {
-    /* arrondir l'iomage */
-    border-radius: 10%;   
-    box-shadow: 5px 5px 3px rgba(0,0, 0, 0.7);
-}
-.imagePresentation img:hover {
-    opacity: 0.5;
-    transform: scale(1.05) ;
-    transition: 0.6s ease-in-out;
-}
-/* ***************TOURISME******************* */
-#tourisme{
-    height: 1400px;
-    background-color: #f1f2f6;
-    padding: 1px 2%;
-}
-#tourisme h2 {
-    padding-top: 60px;
-}
-#ocean {
-    background: url(media/ocean.jpg);
-}
-#chateau {
-    background: url(media/chateau.JPG);
-}
-#phare {
-    background: url(media/phare.JPG);
-}
-#vignoble {
-    background: url(media/vignes.jpg);
-}
-#tourisme li {
-    margin: 65px 100px 0 100px;
-    height: 226px;
-    width: 55%;
-    max-width: 550px;
-    float:left;
-    box-shadow: 6px 6px 20px -1px rgba(0,0, 0, 0.7);
-}
-#tourisme p {
-    height: 45px;
-    width: 235px;
-    background-color: #01df74;
-    float: right;
-    margin: 50px -180px 0 0;
-    font-size: 1.5em;
-    text-align: center;
-    padding-top: 15px;
-    box-shadow: 4px 4px 0 1px rgba(90,161,43,1);
-}
-#tourisme #chateau, #tourisme #vignoble {
-    float: right;
-}
-#chateau p, #vignoble p {
-    float: left;
-    background-color: cyan;
-    margin-left: -180px;
-    box-shadow: -4px 4px 0 1px rgba(15,154,156,1);
-}
-/* *********************FOOTER******************* */
-footer {
-    background-color:#524a3a ;
-    color: #FFFAE1;
-    padding: 20px 0 10px 0;
-    text-align: center;
-}
-form {
+
+#tourisme ul {
+    max-width: 1000px;
     margin: 0 auto;
-    max-width: 900px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 0 2rem;
 }
-input, textarea, button {
-    border:  none;
-    width: 55%;
-    padding: 15px 10px;
-    margin: 1px 0;
-    font-size: 1.2em;
-    font-family: 'Advent pro', sans-serif;
+
+#tourisme li {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    min-height: 300px;
+}
+
+#tourisme li:nth-child(even) {
+    direction: rtl;
+}
+
+#tourisme li:nth-child(even) > * {
+    direction: ltr;
+}
+
+.tourisme-image {
+    width: 100%;
+    height: 250px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+#ocean .tourisme-image {
+    background-image: url('media/ocean.jpg');
+}
+
+#chateau .tourisme-image {
+    background-image: url('media/chateau.JPG');
+}
+
+#phare .tourisme-image {
+    background-image: url('media/phare.JPG');
+}
+
+#vignoble .tourisme-image {
+    background-image: url('media/vignes.jpg');
+}
+
+.tourisme-content {
+    padding: 2rem;
+}
+
+.tourisme-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #8B4513;
+    margin-bottom: 1rem;
+}
+
+.tourisme-content p {
+    font-size: 1.1rem;
+    color: #5a6c7d;
+    line-height: 1.7;
+}
+
+/* ======================== FOOTER ======================== */
+footer {
+    background: #2c3e50;
+    color: white;
+    padding: 4rem 0 2rem 0;
+    text-align: center;
+}
+
+footer h2 {
+    color: white;
+    margin-bottom: 2rem;
+}
+
+footer form {
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+    padding: 0 2rem;
+}
+
+footer input,
+footer textarea,
+footer button {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: none;
     border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
 }
-textarea {
+
+footer input,
+footer textarea {
+    background: white;
+    color: #2c3e50;
+}
+
+footer textarea {
     height: 120px;
+    resize: vertical;
 }
-button {
-    font-size: 1.5em;
-    background-color: #FFFAE1;
-}
-button:hover {
-    background-color: #e55039;
-    color: #FFFAE1;
+
+footer button {
+    background: #8B4513;
+    color: white;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.3s ease-in-out;
+    transition: background 0.3s ease;
 }
+
+footer button:hover {
+    background: #A0522D;
+}
+
 #deuxiemeTrait {
+    width: 200px;
     height: 1px;
-    width: 75%;
-    background-color: #FFFAE1;
-    margin: 60px auto;
+    background: rgba(255,255,255,0.3);
+    margin: 2rem auto;
 }
+
 #copyrightEtIcons {
     display: flex;
-    margin-bottom: 20px;
-    padding: 0 10%;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
-#copyright {
-    width: 50%;
-    text-align: left;
-}
-#icons {
-    width: 50%;
-    text-align: right;
-}
+
 #icons a {
     display: inline-block;
-    margin:  0 15px;
-    font-size: 1.3em;
-    color: #FFFAE1;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    color: white;
+    transition: color 0.3s ease;
 }
+
 #icons a:hover {
-    transform: scale3d(11.5em);
-    transition: 0.1s;
+    color: #8B4513;
+}
+
+/* ======================== PAGE RESERVATION ======================== */
+.reservation-container {
+    max-width: 900px;
+    margin: 6rem auto 3rem auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.reservation-header {
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.reservation-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.reservation-form {
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #8B4513;
+}
+
+.chambre-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.chambre-option {
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.chambre-option:hover {
+    border-color: #8B4513;
+    background: white;
+}
+
+.chambre-option.selected {
+    border-color: #8B4513;
+    background: #fff8f0;
+}
+
+.chambre-option input[type="radio"] {
+    margin-bottom: 1rem;
+    transform: scale(1.2);
+}
+
+.chambre-option h4 {
+    font-family: 'Playfair Display', serif;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.chambre-option p {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.prix {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #8B4513;
+}
+
+#total-sejour {
+    background: #e8f5e8;
+    color: #2d5016;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 2rem 0;
+}
+
+.btn-reserver {
+    grid-column: 1 / -1;
+    background: #8B4513;
+    color: white;
+    border: none;
+    padding: 1.5rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-reserver:hover {
+    background: #A0522D;
+}
+
+.message {
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 2rem 3rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.retour {
+    text-align: center;
+    padding: 2rem 3rem;
+}
+
+.retour a {
+    color: #8B4513;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #8B4513;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.retour a:hover {
+    background: #8B4513;
+    color: white;
+}
+
+/* ======================== RESPONSIVE ======================== */
+@media (max-width: 768px) {
+    /* Navigation mobile */
+    nav ul {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    nav ul li:not(#logo) {
+        margin-left: 0;
+    }
+    
+    /* Hero section */
+    #imagePrincipale h1 {
+        font-size: 3rem;
+    }
+    
+    #imagePrincipale h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* Sections */
+    #presentation,
+    #tourisme {
+        padding: 3rem 0;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    /* Prestations */
+    #prestations {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    /* Tourisme */
+    #tourisme li {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    #tourisme li:nth-child(even) {
+        direction: ltr;
+    }
+    
+    .tourisme-image {
+        height: 200px;
+    }
+    
+    /* Footer */
+    #copyrightEtIcons {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    /* Réservation */
+    .reservation-container {
+        margin: 5rem 1rem 2rem 1rem;
+    }
+    
+    .reservation-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .reservation-form {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+        gap: 1.5rem;
+    }
+    
+    .chambre-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    #imagePrincipale h1 {
+        font-size: 2.5rem;
+    }
+    
+    .reservation-header {
+        padding: 2rem 1rem;
+    }
+    
+    .reservation-header h1 {
+        font-size: 2rem;
+    }
+    
+    .reservation-form {
+        padding: 1.5rem;
+    }
 }
